@@ -1,11 +1,11 @@
 <div class="row p-3">
   <div class="col-12">
-    <!-- Búsqueda -->
+    <!-- Search bar -->
     <gifs-search-box></gifs-search-box>
   </div>
 
   <div class="col-12 pt-2">
-    <!-- Listado Gifs -->
-    <gifs-card-list></gifs-card-list>
+    <!-- Gifs list -->
+    <gifs-card-list [gifsList]="gifs" [tagsList]="tags"></gifs-card-list>
   </div>
 </div>
