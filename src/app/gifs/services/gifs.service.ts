@@ -6,7 +6,7 @@ import {
 import { Injectable } from '@angular/core';
 import { Gif, SearchResponse } from '../interfaces/gifs.interfaces';
 
-const GIPHY_API_KEY: string = 'u1cQKdr1jNtNwV0zrWmHCk4oSVH0wRz';
+const GIPHY_API_KEY: string = 'u1cQKdr1jNtNwV0zrWmHCk4oSVH0wRzB';
 const SERVICE_URL: string = 'https://api.giphy.com/v1/gifs';
 
 @Injectable({
