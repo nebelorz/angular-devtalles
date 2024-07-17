@@ -4,4 +4,5 @@
   class="form-control"
   #txtInput
   (keyup.enter)="emitValue(txtInput.value)"
+  (keyup)="onKeyPress(txtInput.value)"
 />

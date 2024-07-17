@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, of } from 'rxjs';
+import { catchError, delay, map, Observable, of } from 'rxjs';
 
 import { Country } from '../interfaces/country';
 
@@ -9,6 +9,9 @@ import { Country } from '../interfaces/country';
 })
 export class CountriesService {
   private baseUrl = 'https://restcountries.com/v3.1';
+  private getCountriesRequest(url: string): Observable<Country[]> {
+    return this.http.get<Country[]>(url).pipe(catchError(() => of([])));
+  }
 
   constructor(private http: HttpClient) {}
 
@@ -23,20 +26,16 @@ export class CountriesService {
 
   searchCapital(term: string): Observable<Country[]> {
     const url = `${this.baseUrl}/capital/${term}`;
-
-    // This doesn't send the request. To send the request you should use .subscribe() method
-    return this.http.get<Country[]>(url).pipe(catchError(() => of([]))); // Uses .pipe() method to catch an error and return a new Observable that's an empty array
+    return this.getCountriesRequest(url);
   }
 
   searchCountry(term: string): Observable<Country[]> {
     const url = `${this.baseUrl}/name/${term}`;
-
-    return this.http.get<Country[]>(url).pipe(catchError(() => of([])));
+    return this.getCountriesRequest(url);
   }
 
   searchRegion(region: string): Observable<Country[]> {
     const url = `${this.baseUrl}/region/${region}`;
-
-    return this.http.get<Country[]>(url).pipe(catchError(() => of([])));
+    return this.getCountriesRequest(url);
   }
 }
